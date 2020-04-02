@@ -16,9 +16,32 @@ It should set the content of the created li element to the value of the current 
 Finally the new li should be appended to the ul provided.
 */
 
+let todos = ["Learn HTML", "Learn CSS", "Learn JavaScript"];
 let todoInput = document.querySelector("#todo-text");
 let todoForm = document.querySelector("#todo-form");
 let todoList = document.querySelector("#todo-list");
 let todoCountSpan = document.querySelector("#todo-count");
 
-let todos = ["Learn HTML", "Learn CSS", "Learn JavaScript"];
+function renderToDos() {
+  todos.forEach(function(todo) {
+    let listItem = document.createElement("li");
+    listItem.innerHTML = todo;
+    todoList.appendChild(listItem);
+  });
+  //for (let todo of todos){
+  //let listItem = document.createElement('li');
+  //todoItem.innerHTML = addTodo
+  //todoList.appendChild(listItem);
+  //}
+}
+
+renderToDos();
+
+document.addEventListener("submit", function() {
+  event.preventDefault();
+  let userInput = todoInput.value;
+  //add userInput to todos array
+  todos.push(userInput);
+  todoList.innerHTML = " ";
+  renderToDos();
+});
